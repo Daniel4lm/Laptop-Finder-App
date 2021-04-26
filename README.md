@@ -2,11 +2,11 @@
 We have a search page with multiple filters, a listing page, a details page and an FAQ page.
 
 This app is made by using following technologies:
-    - [Next.js](https://nextjs.org/) react framework (bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)),
-    - SQlite database with migration,
-    - TypeScript superset for JS,
-    - Material-UI library,
-    - Axios and others.
+- [Next.js](https://nextjs.org/) react framework (bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)),
+- SQlite database with migration,
+- TypeScript superset for JS,
+- Material-UI library,
+- Axios and others.
 
 ## How to run app
 
