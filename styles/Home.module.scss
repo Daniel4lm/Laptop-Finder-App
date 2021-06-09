@@ -1,4 +1,7 @@
+@import 'variables.module';
+
 .container {
+  background: $primary-bg-color;
   min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
@@ -14,6 +17,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.searchForm {
+  margin: auto;
+  max-width: 550;
+  padding: 1.6rem 0.8rem 1rem 0.8rem;
+  //border: 1px solid $beige-light;
 }
 
 .footer {

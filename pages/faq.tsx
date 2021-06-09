@@ -1,77 +1,21 @@
+import styled from "styled-components";
+
 import { AccordionDetails, Typography, Grid } from "@material-ui/core";
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { GetStaticProps } from "next";
 import { openDB } from "../lib/openDB";
 import FaqModel from "../model/Faq";
 
+import Accordion from "../components/accordion/Accordion";
+
 interface FaqProps {
     faqs: FaqModel[];
 }
 
-const Accordion = withStyles({
-    root: {
-        marginBottom: '0.4rem',
-        border: '1px solid rgba(0, 0, 0, .125)',
-        boxShadow: 'none',
-        '&:before': {
-            display: 'none',
-        },
-        '&:last-child': {
-            borderRadius: 0,
-        },
-        '&$expanded': {
-            margin: '0.2rem auto',
-            borderBottomLeftRadius: '0.2rem',
-            borderBottomRightRadius: '0.2rem',
-        },
-
-    },
-    expanded: {},
-})(MuiAccordion);
-
-const AccordionSummary = withStyles({
-    root: {
-        backgroundColor: 'rgba(0, 0, 0, .02)',
-        //borderBottom: '1px solid rgba(0, 0, 0, .125)',
-        borderBottom: '3px solid transparent',
-        marginBottom: -1,
-        "&:hover": {
-            //background: 'rgb(235, 235, 235)',
-            borderBottomColor: '#0984e3',
-        },
-        '&$expanded': {
-            background: 'rgba(0, 0, 0, .09)',
-            borderBottom: '1px solid rgba(0, 0, 0, .125)',
-        },
-    },
-    content: {
-        '&$expanded': {
-        },
-    },
-    expanded: {},
-})(MuiAccordionSummary);
-
 const useStyles = makeStyles((theme) => ({
-    root: {
-        marginBottom: theme.spacing(1),
-        border: '1px solid rgba(0, 0, 0, .125)',
-        boxShadow: 'none',
-        '&:before': {
-            display: 'none',
-        },
-        '&$expanded': {
-            margin: 'auto',
-            color: 'red',
-            borderBottomLeftRadius: '0.2rem',
-            borderBottomRightRadius: '0.2rem',
-            border: '4px solid rgba(0, 0, 0, .125)',
-        },
-
-    },
     heading: {
         background: 'rgb(240, 240, 240)',
         borderBottom: '1px solid rgba(0, 0, 0, .125)',
@@ -89,37 +33,76 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const StyledFaq = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: inherit;
+
+    .faq-cover {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 1.5rem 1rem;
+        margin-bottom: 1rem;
+        font-size: 25px;
+        font-weight: bold;
+        background: rgb(100, 149, 237);
+        color: #fff;
+    }
+
+    .faq-title {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 0.5rem 0;
+        margin: 1rem 0;
+    }
+
+    .container {
+        //margin: auto;
+    }
+
+    @media screen and (max-width: 600px) {
+        .container {
+            width: 90%;
+        }
+        .faq-cover {
+            font-size: 20px;
+            justify-content: flex-start;
+        }
+        .faq-title {
+            width: 90%;
+            padding: 0 0.5rem;
+        }
+    }
+
+    @media screen and (min-width: 600px) {
+        .container {
+            width: 50%;
+        }
+    }
+`;
+
 export default function Faq({ faqs }: FaqProps) {
 
-    const classes = useStyles();
-
     return (
-        <Grid xs={12} md={6} className={classes.container} >
-            <Typography style={{ margin: '1rem 0' }} variant='h5' color='inherit'>
-                Help Center
-            </Typography>
-            <Typography style={{ margin: '0.5rem 0' }} variant='h6' color='inherit'>
-                Frequently Asked Questions
-            </Typography>
-
-            {faqs.map(faq => (
-                <Accordion key={faq.id}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                    >
-                        <Typography className={classes.title}>{faq.question}</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            {faq.answer}
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
-
-            ))}
-        </Grid>
+        <StyledFaq>
+            <div className="faq-cover" >
+                <span>How we can help you ?</span>
+            </div>
+            <h3 className="faq-title" >
+                    Help Center - Frequently Asked Questions
+                </h3>
+            <div className="container" >               
+                
+                {faqs.map(faq => (
+                    <Accordion key={faq.id} title={faq.question}>
+                        <span>{faq.answer}</span>
+                    </Accordion>
+                ))}
+            </div>
+        </StyledFaq>
     );
 }
 

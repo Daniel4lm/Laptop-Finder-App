@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { Box, Container, CssBaseline } from "@material-ui/core";
+//import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from 'styled-components'
+//import { Box, Container, CssBaseline } from "@material-ui/core";
 import useSWR, { SWRConfig } from 'swr';
 import NavBar from "../components/navigation/NavBar";
-import theme from './theme';
 
-import '../styles/globals.css'
+import theme from '../styles/theme';
+import { GlobalStyle } from "../styles/GlobalStyle.style";
+//import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
 
@@ -26,14 +28,10 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <NavBar />
+        <GlobalStyle />
+        <NavBar title='Laptop Finder App' menuIcon />
         <SWRConfig value={{ fetcher: (url: string) => fetch(url).then(res => res.json()) }}>
-          <Container maxWidth={false}>
-            <Box marginTop={2}>
-              <Component {...pageProps} />
-            </Box>
-          </Container>
+          <Component {...pageProps} />
         </SWRConfig>
 
       </ThemeProvider>

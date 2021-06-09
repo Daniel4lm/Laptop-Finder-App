@@ -1,36 +1,19 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-/* material-ui imports */
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Box from '@material-ui/core/Box';
+
+/* styled-component imports */
+import { StyledNav } from "./NavBar.style";
+
+import AppsIcon from '@material-ui/icons/Apps';
 
 
-const useStyles = makeStyles((theme) => ({
-    navigation: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    title: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    navBtn: {
-        fontSize: '1em',
-        margin: '0 0.2rem'
-    }
-}));
+interface NavBarType {
+    title: string;
+    menuIcon: boolean;
+}
 
-export default function NavBar(props) {
+export default function NavBar({ title, menuIcon }: NavBarType) {
 
-    const classes = useStyles();
     const router = useRouter();
     const { pathname } = router;
     const isLaptopsPath: boolean = pathname.startsWith('/laptops');
@@ -41,36 +24,40 @@ export default function NavBar(props) {
         //console.log('Total pages: ', numOfPages, ' - current page ', curPageNum)
 
         return (
-            <Box>
-                <Typography variant="h6" color="inherit">
+            <div>
+                <span >
                     Our laptps offer
-                </Typography>
-            </Box>
+                </span>
+            </div>
         );
     }
 
-    return (// 
-        <AppBar position="static" >
-            <Toolbar className={classes.navigation}>
-                <Typography className={classes.title}>
-                    <Link href='/'>
-                        <IconButton color="inherit" aria-label="menu">
-                            <MenuIcon />
-                        </IconButton>
-                    </Link>
-                    <Typography variant="h6" > Laptops Finder </Typography>
-                </Typography>
-                {isLaptopsPath && renderTitle()}
-                {!isFaqsPath && <Button color="inherit">
-                    <Link href='/faq'>
-                        <a style={{ color: '#fff', textDecoration: 'underline' }}>
-                            <Typography color='inherit'>
-                                FAQ
-                            </Typography>
-                        </a>
-                    </Link>
-                </Button>}
-            </Toolbar>
-        </AppBar>
+    return (
+        <StyledNav >
+            <div className="nav-left">
+                <Link href='/'>
+                    {menuIcon &&
+                        <div className="nav-icon">
+                            <AppsIcon />
+                        </div>
+                    }
+                </Link>
+                <span className="title">{title}</span>
+            </div>
+
+            {isLaptopsPath && renderTitle()}
+
+            <ul className="nav-items">
+                {!isFaqsPath &&
+                    <li className="nav-item" color="inherit">
+                        <Link href='/faq'>
+                            <a>FAQ</a>
+                        </Link>
+                    </li>}
+                <li className="nav-item"><a>Contact</a></li>
+                <li className="nav-item"><a>About</a></li>
+            </ul>
+
+        </StyledNav>
     );
-} // {isLaptopsPath && renderTitle()}
+}
