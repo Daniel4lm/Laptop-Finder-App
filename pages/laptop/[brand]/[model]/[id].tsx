@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
+import fs from 'fs';
+import { join } from 'path';
 
 import { openDB } from "../../../../lib/openDB";
 import LaptopModel from "../../../../model/Laptop";
 
-import fs from 'fs';
-import { join } from 'path';
 /* material-ui */
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Typography, Link } from '@material-ui/core';
@@ -19,12 +20,13 @@ import ZoomInIcon from '@material-ui/icons/ZoomIn';
 
 import { Modal as Magnifier } from "../../../../components/modal/Modal";
 import { Box, Button } from '@material-ui/core';
-import homeStyles from '../../../../styles/Home.module.css';
+import homeStyles from '../../../../styles/Home.module.scss';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        padding: 10
+        padding: 10,
+        background: '#f0f2f5'
     },
     paper: {
         padding: theme.spacing(2),
@@ -155,6 +157,10 @@ export default function LaptopDetail({ laptop }: LaptopDetailType) {
 
     return (
         <div className={classes.root}>
+            <Head>
+                <title>{brand}{' '}{name}</title>
+                <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+            </Head>
             <Box className={classes.panel}>
                 <a className={homeStyles.navbar_link} onClick={() => router.back()}>Back</a>
                 <div>
@@ -255,7 +261,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const dbConnection = await openDB();
 
     const laptop = await dbConnection.get<LaptopModel | undefined>(
-        "SELECT Laptop.id, Brand.brandName, name, display, processor, memory, memory_type, graphics, storage, storage_unit, imgUrl, price FROM Laptop " +
+        "SELECT Laptop.id, Brand.brandName AS brand, name, display, processor, memory, memory_type, graphics, storage, storage_unit, imgUrl, price FROM Laptop " +
         "INNER JOIN Brand WHERE Laptop.brand = Brand.id AND Laptop.id = ?;", [lapId]);
 
     if (laptop?.imgUrl) {

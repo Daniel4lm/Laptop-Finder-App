@@ -10,6 +10,7 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/icons": "latest",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "@types/sass": "latest",
     "@types/styled-components": "latest",
     "axios": "^0.21.1",

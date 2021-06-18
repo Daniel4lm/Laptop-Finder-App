@@ -38,13 +38,11 @@ const useStyles = makeStyles((theme) => ({
 
 const StyledSearch = styled.div`
 
-  background: #f0f2f5;
-  min-height: 100vh;
+  //background: #f0f2f5;
+  //min-height: 100vh;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  //justify-content: center;
-  //align-items: center;
 
   .main {
     padding: 2rem 0;
@@ -54,7 +52,27 @@ const StyledSearch = styled.div`
     //justify-content: center;
     //align-items: center;
   }
+`;
 
+const StyledPaper = styled.article`
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px 0px;
+  box-sizing: border-box;
+
+  margin: auto;
+  max-width: 550px;
+  padding: 1.5rem 1rem 1rem 1rem;
+  
+  .form-title {
+    width: 100%;
+    padding-bottom: 1rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #284777;
+  }
 `;
 
 const prices = [150, 250, 400, 500, 800, 1200, 1500];
@@ -73,29 +91,19 @@ export default function SearchLaptops({ lapBrands, lapModels, singleColumn }: Se
 
   const mediumSize = singleColumn ? 12 : 6;
 
-  const returnBrand = (br: string) => {
-    const matchBrand = lapBrands.find((lbrand: BrandType) => lbrand.brand === br);
-    if (matchBrand) {
-      return `${matchBrand.brand} (${matchBrand.count})`
-    } else {
-      return 'All brands';
-    }
-  }
-
   const submitFunc = (values) => {
     router.push({
       pathname: '/laptops',
-      query: { ...values }
-    }, undefined, { shallow: true })
+      query: { ...values, page: 1 }
+    }, undefined, { shallow: false })
   }
-
-  return (
-    <StyledSearch>
-      <Head>
+/*
+<Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-
+ */
+  return (
+    <StyledSearch>      
       <main className="main">
         <Formik
           initialValues={initialValues}
@@ -103,11 +111,10 @@ export default function SearchLaptops({ lapBrands, lapModels, singleColumn }: Se
         >
           {({ values }) => (
             <Form>
-              <Paper elevation={2} className={classes.formControl}>
-
-                <Grid container className={classes.formTitle} >
-                  <Typography align='center'>Please select the model</Typography>
-                </Grid>
+              <StyledPaper >
+                <div className="form-title" >
+                  <h3 >Search laptops</h3>
+                </div>
 
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={mediumSize}>
@@ -162,7 +169,7 @@ export default function SearchLaptops({ lapBrands, lapModels, singleColumn }: Se
 
                   <Grid item xs={12} sm={mediumSize}>
                     <FormControl fullWidth variant="outlined" >
-                      <InputLabel id="search-max-price">Min price</InputLabel>
+                      <InputLabel id="search-max-price">Max price</InputLabel>
                       <Field
                         name='maxPrice'
                         as={Select}
@@ -189,7 +196,7 @@ export default function SearchLaptops({ lapBrands, lapModels, singleColumn }: Se
                   </Grid>
 
                 </Grid>
-              </Paper>
+              </StyledPaper>
             </Form>
           )}
         </Formik>

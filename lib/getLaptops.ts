@@ -1,4 +1,5 @@
-import { ParsedUrlQuery } from "node:querystring";
+import { ParsedUrlQuery } from "querystring";
+import { asString } from "../helpers/asString";
 import LaptopModel from "../model/Laptop";
 import { openDB } from "./openDB";
 
@@ -27,7 +28,7 @@ export async function getLaptops(query: ParsedUrlQuery) {
     }
 
     const laptops = await dbConn.all<LaptopModel[]>(`
-        SELECT Laptop.id, Brand.brandName, name, display, processor, memory, memory_type, graphics, storage, storage_unit, imgUrl, price 
+        SELECT Laptop.id, Brand.brandName AS brand, name, display, processor, memory, memory_type, graphics, storage, storage_unit, imgUrl, price 
         ${laptopsQuery}
         LIMIT @pageRows OFFSET @offset ;
     `, {
@@ -41,7 +42,11 @@ export async function getLaptops(query: ParsedUrlQuery) {
         ${laptopsQuery}
     `, queryParams);
 
-    return { laptops, totalPages: Math.ceil(totalRows.count / pageRows) }
+    return { 
+        laptops, 
+        totalPages: Math.ceil(totalRows.count / pageRows),
+        totalCount: totalRows.count
+     }
 }
 
 function getNumberValue(value: string | string[]) {
@@ -50,15 +55,3 @@ function getNumberValue(value: string | string[]) {
     return isNaN(isNum) ? null : isNum;
 }
 
-function asString(value: string | string[]) {
-
-    let realValue: string;
-
-    if (Array.isArray(value)) {
-        realValue = value[0];
-    } else {
-        realValue = value;
-    }
-
-    return !realValue || realValue.toLowerCase() === 'all' ? null : realValue;
-}

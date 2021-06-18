@@ -19,6 +19,29 @@
   align-items: center;
 }
 
+.navbar_link {
+  flex-basis: max-content;
+  margin: 0 0.4rem;
+  letter-spacing: 1px;
+  outline: none;
+  font-size: .875rem;
+  /*line-height: 1.1;
+  font-weight: 500;*/
+  -webkit-box-shadow: inset 0px 0px 0px 2px rgb(132, 134, 255); 
+  box-shadow: inset 0px 0px 0px 2px rgb(132, 134, 255);
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  transition: all .15s ease-in;
+}
+
+.navbar_link:hover {
+  cursor: pointer;
+  background: rgb(97, 98, 201);
+  -webkit-box-shadow: inset 0px 0px 0px 2px rgb(97, 98, 201); 
+  box-shadow: inset 0px 0px 0px 2px rgb(97, 98, 201);
+  color: #fff;
+}
+
 .searchForm {
   margin: auto;
   max-width: 550;

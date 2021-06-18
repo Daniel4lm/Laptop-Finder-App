@@ -19,9 +19,9 @@ export default function SelectModel({ lapModels, brand, ...props }: SelectModelT
 
     //console.log('Formik filed: ', field)
     const { data } = useSWR<ModelType[]>(`/api/models/?brand=${brand}`, {
-        dedupingInterval: 60000,
-        onSuccess: (newData) => {
-            if (!selectedModels.map(el => el.model).includes(field.value)) {
+        //dedupingInterval: 60000,
+        onSuccess: (newBrandData) => {
+            if (!newBrandData.map(el => el.model).includes(field.value)) {
                 setFieldValue('model', 'all');
             }
         }

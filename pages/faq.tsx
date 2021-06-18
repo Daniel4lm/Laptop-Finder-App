@@ -1,10 +1,5 @@
 import styled from "styled-components";
-
-import { AccordionDetails, Typography, Grid } from "@material-ui/core";
-import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Head from 'next/head';
 import { GetStaticProps } from "next";
 import { openDB } from "../lib/openDB";
 import FaqModel from "../model/Faq";
@@ -14,24 +9,6 @@ import Accordion from "../components/accordion/Accordion";
 interface FaqProps {
     faqs: FaqModel[];
 }
-
-const useStyles = makeStyles((theme) => ({
-    heading: {
-        background: 'rgb(240, 240, 240)',
-        borderBottom: '1px solid rgba(0, 0, 0, .125)',
-        "&:hover": {
-            background: 'rgb(230, 230, 230)',
-
-        }
-    },
-    title: {
-        fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular,
-    },
-    container: {
-        margin: 'auto'
-    }
-}));
 
 const StyledFaq = styled.div`
     width: 100%;
@@ -59,10 +36,6 @@ const StyledFaq = styled.div`
         margin: 1rem 0;
     }
 
-    .container {
-        //margin: auto;
-    }
-
     @media screen and (max-width: 600px) {
         .container {
             width: 90%;
@@ -88,14 +61,17 @@ export default function Faq({ faqs }: FaqProps) {
 
     return (
         <StyledFaq>
+            <Head>
+                <title>FAQ</title>
+            </Head>
             <div className="faq-cover" >
                 <span>How we can help you ?</span>
             </div>
             <h3 className="faq-title" >
-                    Help Center - Frequently Asked Questions
+                Help Center - Frequently Asked Questions
                 </h3>
-            <div className="container" >               
-                
+            <div className="container" >
+
                 {faqs.map(faq => (
                     <Accordion key={faq.id} title={faq.question}>
                         <span>{faq.answer}</span>

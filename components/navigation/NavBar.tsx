@@ -20,9 +20,6 @@ export default function NavBar({ title, menuIcon }: NavBarType) {
     const isFaqsPath: boolean = pathname.includes('/faq');
 
     const renderTitle = () => {
-        //const { curPageNum, numOfPages } = props;
-        //console.log('Total pages: ', numOfPages, ' - current page ', curPageNum)
-
         return (
             <div>
                 <span >
@@ -32,7 +29,8 @@ export default function NavBar({ title, menuIcon }: NavBarType) {
         );
     }
 
-    return (
+    return ( // {isLaptopsPath && renderTitle()}
+
         <StyledNav >
             <div className="nav-left">
                 <Link href='/'>
@@ -44,8 +42,6 @@ export default function NavBar({ title, menuIcon }: NavBarType) {
                 </Link>
                 <span className="title">{title}</span>
             </div>
-
-            {isLaptopsPath && renderTitle()}
 
             <ul className="nav-items">
                 {!isFaqsPath &&
