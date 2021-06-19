@@ -11,6 +11,7 @@
     "@material-ui/core": "latest",
     "@material-ui/icons": "latest",
     "@material-ui/lab": "^4.0.0-alpha.58",
+    "@netlify/plugin-nextjs": "^3.4.2",
     "@types/sass": "latest",
     "@types/styled-components": "latest",
     "aws-sdk": "^2.931.0",

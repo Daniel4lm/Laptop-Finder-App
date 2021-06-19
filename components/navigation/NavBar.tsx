@@ -6,6 +6,10 @@ import { StyledNav } from "./NavBar.style";
 
 import AppsIcon from '@material-ui/icons/Apps';
 
+import { MdLaptopMac } from "react-icons/md";
+import { useMobileContext } from "../../contexts/MobileContext";
+import Hamburger from "../hamburger-button/Hamburger";
+
 
 interface NavBarType {
     title: string;
@@ -16,8 +20,9 @@ export default function NavBar({ title, menuIcon }: NavBarType) {
 
     const router = useRouter();
     const { pathname } = router;
-    const isLaptopsPath: boolean = pathname.startsWith('/laptops');
+    //const isLaptopsPath: boolean = pathname.startsWith('/laptops');
     const isFaqsPath: boolean = pathname.includes('/faq');
+    const { isMobile } = useMobileContext();
 
     const renderTitle = () => {
         return (
@@ -32,11 +37,12 @@ export default function NavBar({ title, menuIcon }: NavBarType) {
     return ( // {isLaptopsPath && renderTitle()}
 
         <StyledNav >
+            {isMobile && <Hamburger />}
             <div className="nav-left">
                 <Link href='/'>
                     {menuIcon &&
                         <div className="nav-icon">
-                            <AppsIcon />
+                            <MdLaptopMac />
                         </div>
                     }
                 </Link>
@@ -53,6 +59,8 @@ export default function NavBar({ title, menuIcon }: NavBarType) {
                 <li className="nav-item"><a>Contact</a></li>
                 <li className="nav-item"><a>About</a></li>
             </ul>
+
+            {isMobile && <div />}
 
         </StyledNav>
     );

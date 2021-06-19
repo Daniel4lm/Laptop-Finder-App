@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { ThemeProvider } from 'styled-components'
-import useSWR, { SWRConfig } from 'swr';
-import NavBar from "../components/navigation/NavBar";
+import { ThemeProvider } from 'styled-components';
+import { MobileProvider, useMobileContext } from "../contexts/MobileContext";
+import { SWRConfig } from 'swr';
+import Layout from "../components/layout/Layout";
 
 import theme from '../styles/theme';
 import { GlobalStyle } from "../styles/GlobalStyle.style";
@@ -27,10 +28,14 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <GlobalStyle />
-        <NavBar title='Laptop Finder App' menuIcon />
-        <SWRConfig value={{ fetcher: (url: string) => fetch(url).then(res => res.json()) }}>
-          <Component {...pageProps} />
-        </SWRConfig>
+        <MobileProvider>
+          <Layout>
+            <SWRConfig value={{ fetcher: (url: string) => fetch(url).then(res => res.json()) }}>
+              <Component {...pageProps} />
+            </SWRConfig>
+          </Layout>
+        </MobileProvider>
+        
 
       </ThemeProvider>
     </>
