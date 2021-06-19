@@ -1,17 +1,18 @@
 import * as React from "react";
 import Head from "next/head";
-import NavBar from "../../components/navigation/NavBar";
+import { NavBar } from "../../components/navigation/NavBar";
 import { useMobileContext } from "../../contexts/MobileContext";
 import MobileNavbar from "../../components/sidebar/MobileNavbar";
-import Hamburger from "../hamburger-button/Hamburger";
 
 type LayoutType = {
-    children?: React.ReactChild | React.ReactChild[]
+    children?: React.ReactChild | React.ReactChild[];
 }
 
 export default function Layout(props: LayoutType) {
 
     const { mobState, isMobile, toggleNav } = useMobileContext();
+
+    const navRef = React.useRef(null);
 
     React.useEffect(() => {
 
@@ -28,12 +29,11 @@ export default function Layout(props: LayoutType) {
                 <meta charSet='utf-8' />
                 <meta name='viewport' content='initial-scale=1.0, width=device-width' />
             </Head>
-            <div >
-                <NavBar title='Laptop Finder App' menuIcon />
-                
-                {mobState.toggle && <MobileNavbar />}
+            <div>
+                <NavBar ref={navRef} title='Laptop Finder App' menuIcon />
+                {mobState.toggle && <MobileNavbar top={navRef.current?.offsetHeight} />}
                 <main>{props.children}</main>
             </div>
         </>
-    );// className={styles.layout_content}
-} // {isMobile && <Hamburger />}
+    );
+}

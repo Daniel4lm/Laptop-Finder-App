@@ -9,6 +9,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 import { MdLaptopMac } from "react-icons/md";
 import { useMobileContext } from "../../contexts/MobileContext";
 import Hamburger from "../hamburger-button/Hamburger";
+import { forwardRef } from "react";
 
 
 interface NavBarType {
@@ -16,7 +17,7 @@ interface NavBarType {
     menuIcon: boolean;
 }
 
-export default function NavBar({ title, menuIcon }: NavBarType) {
+export const NavBar = forwardRef<HTMLElement, NavBarType>(({ title, menuIcon }, ref) => {
 
     const router = useRouter();
     const { pathname } = router;
@@ -36,7 +37,7 @@ export default function NavBar({ title, menuIcon }: NavBarType) {
 
     return ( // {isLaptopsPath && renderTitle()}
 
-        <StyledNav >
+        <StyledNav ref={ref} >
             {isMobile && <Hamburger />}
             <div className="nav-left">
                 <Link href='/'>
@@ -64,4 +65,4 @@ export default function NavBar({ title, menuIcon }: NavBarType) {
 
         </StyledNav>
     );
-}
+})

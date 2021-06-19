@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const NavItems = styled.ul`
+interface NavItemsProps {
+    top: number;
+}
+
+const NavItems = styled.ul<NavItemsProps>`
     list-style: none;
     margin: 0;
     padding: 0;
@@ -13,7 +17,7 @@ const NavItems = styled.ul`
     min-height: 100vh;
     height: 100%;
     left: 0;
-    top: 65px;
+    top: ${(props) => (props.top ? props.top : "0")};
     padding-top: 4rem;
     background-color: #ffffff;
     animation: animate 0.3s linear;
@@ -34,7 +38,7 @@ const NavItem = styled.li`
     min-width: max-content;
     width: 225px;
     padding: 10px 2px;
-    //background: #ffffff;
+    user-select: none;
     text-align: center;
     border-radius: 0.2rem;
     box-shadow: inset 0 0px 0px 1px rgba(52, 52, 52, .225);
