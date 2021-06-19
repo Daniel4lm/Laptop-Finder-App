@@ -3,7 +3,7 @@ import { Pagination, PaginationItem, PaginationRenderItemParams } from "@materia
 import { forwardRef } from "react";
 import { asString } from "../../helpers/asString";
 import { useRouter } from "next/router";
-import { ParsedUrlQuery } from "node:querystring";
+import { ParsedUrlQuery } from "querystring";
 
 export default function LaptopPagination({ totalPages }: { totalPages: number }) {
 

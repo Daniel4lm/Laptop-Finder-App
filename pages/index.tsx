@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Button, Grid, Paper, Typography } from '@material-ui/core';
 import { Field, Form, Formik } from 'formik';
 import { GetServerSideProps } from 'next';
-import Head from 'next/head';
 import router, { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
 import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
@@ -38,8 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 const StyledSearch = styled.div`
 
-  //background: #f0f2f5;
-  //min-height: 100vh;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -49,8 +46,6 @@ const StyledSearch = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    //justify-content: center;
-    //align-items: center;
   }
 `;
 
@@ -97,11 +92,7 @@ export default function SearchLaptops({ lapBrands, lapModels, singleColumn }: Se
       query: { ...values, page: 1 }
     }, undefined, { shallow: false })
   }
-/*
-<Head>
-        <title>Create Next App</title>
-      </Head>
- */
+
   return (
     <StyledSearch>      
       <main className="main">

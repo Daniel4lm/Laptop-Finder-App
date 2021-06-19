@@ -78,7 +78,7 @@ export default function LaptopsList({ lapBrands, lapModels, laptops, totalPages,
             </Grid>
         </StyledList>
     )
-} // JSON.stringify({ totalPages, laptops }, null, 2)
+} 
 
 export function ShowCounter({ totalCount }) {
 

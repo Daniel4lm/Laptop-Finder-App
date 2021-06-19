@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-//import { ThemeProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from 'styled-components'
-//import { Box, Container, CssBaseline } from "@material-ui/core";
 import useSWR, { SWRConfig } from 'swr';
 import NavBar from "../components/navigation/NavBar";
 
 import theme from '../styles/theme';
 import { GlobalStyle } from "../styles/GlobalStyle.style";
-//import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
 

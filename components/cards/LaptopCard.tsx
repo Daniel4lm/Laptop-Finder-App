@@ -1,14 +1,10 @@
 import * as React from 'react';
 import Link from "next/link";
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import {
+    makeStyles, IconButton, Typography, Card,
+    CardContent, CardActions, Avatar, CardMedia,
+    CardHeader
+} from '@material-ui/core';
 import * as colors from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
@@ -22,11 +18,9 @@ export interface LaptopCardTypes {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        //maxWidth: 345,
         margin: '0.5rem',
         border: '2px solid transparent',
         "&:hover": {
-            //borderColor: 'rgba(52, 52, 52, 0.5)',
             boxShadow: '0px 0px 8px 0px rgba(52, 52, 52, 0.4)',
             cursor: 'pointer',
         },

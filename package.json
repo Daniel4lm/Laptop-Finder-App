@@ -13,6 +13,7 @@
     "@material-ui/lab": "^4.0.0-alpha.58",
     "@types/sass": "latest",
     "@types/styled-components": "latest",
+    "aws-sdk": "^2.931.0",
     "axios": "^0.21.1",
     "formik": "^2.2.8",
     "next": "10.1.3",
@@ -26,9 +27,9 @@
     "swr": "^0.5.5"
   },
   "devDependencies": {
-    "@types/node": "^14.14.41",
-    "@types/react": "^17.0.3",
+    "@types/node": "^15.12.4",
+    "@types/react": "^17.0.11",
     "babel-plugin-styled-components": "latest",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.4"
   }
 }
