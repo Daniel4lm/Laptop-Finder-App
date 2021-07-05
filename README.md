@@ -8,6 +8,16 @@ This app is made by using following technologies:
 - Material-UI library,
 - Axios and others.
 
+![image](https://user-images.githubusercontent.com/1280747/124481555-b07a9580-dda8-11eb-8583-622d10937d89.png)
+![image](https://user-images.githubusercontent.com/1280747/124481604-bd978480-dda8-11eb-8fca-3da682329425.png)
+![image](https://user-images.githubusercontent.com/1280747/124481977-1ff08500-dda9-11eb-95b9-9f72b4446228.png)
+![image](https://user-images.githubusercontent.com/1280747/124481890-0fd8a580-dda9-11eb-925a-d490f51ca4f6.png)
+![image](https://user-images.githubusercontent.com/1280747/124482061-33035500-dda9-11eb-9787-8bd363047b19.png)
+![image](https://user-images.githubusercontent.com/1280747/124482176-4e6e6000-dda9-11eb-9fae-f5d72036629c.png)
+![image](https://user-images.githubusercontent.com/1280747/124482224-59c18b80-dda9-11eb-9a71-b626322e84b4.png)
+![image](https://user-images.githubusercontent.com/1280747/124482284-68a83e00-dda9-11eb-978c-9e2dab8e25e7.png)
+
+
 ## How to run app
 
 First, run the development server:
